@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Awesome Jobflo Addons</title>
+  <meta name="description" content="A curated registry of community addons for Jobflo." />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
+  <header class="border-b border-slate-800">
+    <div class="mx-auto max-w-6xl px-6 py-12">
+      <p class="text-sm font-medium uppercase tracking-widest text-indigo-400">Jobflo</p>
+      <h1 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Awesome Jobflo Addons</h1>
+      <p class="mt-3 max-w-2xl text-slate-400">
+        A curated, community-maintained registry of local-first addons for Jobflo.
+        Browse below, or
+        <a href="https://github.com/jsrothwell/Jobflo-Addons" class="text-indigo-400 underline underline-offset-2 hover:text-indigo-300">
+          submit your own on GitHub
+        </a>.
+      </p>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-6xl px-6 py-10">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="relative w-full sm:max-w-sm">
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Search addons..."
+          class="w-full rounded-lg border border-slate-800 bg-slate-900 px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+        />
+      </div>
+      <div id="category-filter" class="flex flex-wrap gap-2">
+        <!-- category buttons injected here -->
+      </div>
+    </div>
+
+    <p id="result-count" class="mt-4 text-sm text-slate-500"></p>
+
+    <div id="grid" class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+
+    <div id="state-message" class="hidden py-20 text-center"></div>
+  </main>
+
+  <footer class="border-t border-slate-800 py-8 text-center text-sm text-slate-500">
+    <p>Built with <a href="https://github.com/jsrothwell/Jobflo-Addons" class="underline underline-offset-2 hover:text-slate-300">Jobflo Addons</a> &middot; MIT Licensed</p>
+  </footer>
+
+  <template id="card-template">
+    <article class="group flex flex-col rounded-xl border border-slate-800 bg-slate-900/60 p-5 transition hover:border-indigo-500/60 hover:bg-slate-900">
+      <div class="flex items-start justify-between gap-3">
+        <h2 class="card-title text-lg font-semibold text-slate-100"></h2>
+        <span class="card-version shrink-0 rounded-full bg-slate-800 px-2.5 py-0.5 text-xs font-medium text-slate-300"></span>
+      </div>
+      <p class="card-description mt-2 flex-1 text-sm leading-relaxed text-slate-400"></p>
+      <div class="card-tags mt-4 flex flex-wrap gap-1.5"></div>
+      <div class="mt-4 flex items-center justify-between border-t border-slate-800 pt-3 text-xs text-slate-500">
+        <span>by <span class="card-author font-medium text-slate-400"></span></span>
+        <span class="card-category rounded bg-indigo-500/10 px-2 py-0.5 font-medium text-indigo-400"></span>
+      </div>
+    </article>
+  </template>
+
+  <script>
+    const state = {
+      addons: [],
+      search: "",
+      category: "all",
+    };
+
+    const grid = document.getElementById("grid");
+    const stateMessage = document.getElementById("state-message");
+    const resultCount = document.getElementById("result-count");
+    const searchInput = document.getElementById("search-input");
+    const categoryFilter = document.getElementById("category-filter");
+    const cardTemplate = document.getElementById("card-template");
+
+    function showState(html) {
+      grid.classList.add("hidden");
+      stateMessage.classList.remove("hidden");
+      stateMessage.innerHTML = html;
+    }
+
+    function hideState() {
+      grid.classList.remove("hidden");
+      stateMessage.classList.add("hidden");
+      stateMessage.innerHTML = "";
+    }
+
+    function loadingState() {
+      showState(`
+        <div class="inline-flex items-center gap-2 text-slate-500">
+          <svg class="h-5 w-5 animate-spin text-indigo-500" viewBox="0 0 24 24" fill="none">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+          </svg>
+          <span>Loading addons&hellip;</span>
+        </div>
+      `);
+    }
+
+    function emptyState(message) {
+      showState(`
+        <div class="mx-auto max-w-sm">
+          <p class="text-lg font-medium text-slate-300">${message}</p>
+          <p class="mt-2 text-sm text-slate-500">
+            Know an addon that should be here? <a href="https://github.com/jsrothwell/Jobflo-Addons" class="text-indigo-400 underline underline-offset-2 hover:text-indigo-300">Submit a Pull Request</a>.
+          </p>
+        </div>
+      `);
+    }
+
+    function errorState() {
+      showState(`
+        <div class="mx-auto max-w-sm">
+          <p class="text-lg font-medium text-rose-400">Couldn't load the addon registry.</p>
+          <p class="mt-2 text-sm text-slate-500">Try refreshing the page, or check back later.</p>
+        </div>
+      `);
+    }
+
+    function renderCategories() {
+      const categories = ["all", ...new Set(state.addons.map((addon) => addon.category).filter(Boolean))];
+
+      categoryFilter.innerHTML = "";
+      for (const category of categories) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = category === "all" ? "All" : category;
+        button.dataset.category = category;
+        button.className = pillClasses(category === state.category);
+        button.addEventListener("click", () => {
+          state.category = category;
+          renderCategories();
+          renderGrid();
+        });
+        categoryFilter.appendChild(button);
+      }
+    }
+
+    function pillClasses(active) {
+      const base = "rounded-full px-3 py-1.5 text-xs font-medium transition border";
+      return active
+        ? `${base} border-indigo-500 bg-indigo-500/10 text-indigo-300`
+        : `${base} border-slate-800 bg-slate-900 text-slate-400 hover:border-slate-700 hover:text-slate-200`;
+    }
+
+    function filteredAddons() {
+      const query = state.search.trim().toLowerCase();
+
+      return state.addons.filter((addon) => {
+        const matchesCategory = state.category === "all" || addon.category === state.category;
+        if (!matchesCategory) return false;
+
+        if (!query) return true;
+
+        const haystack = [addon.name, addon.description, addon.author, ...(addon.tags || [])]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+
+        return haystack.includes(query);
+      });
+    }
+
+    function renderGrid() {
+      const addons = filteredAddons();
+
+      if (state.addons.length === 0) {
+        emptyState("No addons have been published yet.");
+        resultCount.textContent = "";
+        return;
+      }
+
+      if (addons.length === 0) {
+        emptyState("No addons match your search.");
+        resultCount.textContent = "";
+        return;
+      }
+
+      hideState();
+      resultCount.textContent = `${addons.length} addon${addons.length === 1 ? "" : "s"}`;
+
+      grid.innerHTML = "";
+      for (const addon of addons) {
+        const node = cardTemplate.content.cloneNode(true);
+
+        node.querySelector(".card-title").textContent = addon.name || addon.id || "Untitled addon";
+        node.querySelector(".card-version").textContent = addon.version ? `v${addon.version}` : "";
+        node.querySelector(".card-description").textContent = addon.description || "";
+        node.querySelector(".card-author").textContent = addon.author || "unknown";
+
+        const categoryEl = node.querySelector(".card-category");
+        if (addon.category) {
+          categoryEl.textContent = addon.category;
+        } else {
+          categoryEl.remove();
+        }
+
+        const tagsEl = node.querySelector(".card-tags");
+        for (const tag of addon.tags || []) {
+          const tagEl = document.createElement("span");
+          tagEl.textContent = tag;
+          tagEl.className = "rounded-full bg-slate-800 px-2 py-0.5 text-[11px] text-slate-400";
+          tagsEl.appendChild(tagEl);
+        }
+
+        grid.appendChild(node);
+      }
+    }
+
+    async function loadRegistry() {
+      loadingState();
+      try {
+        const response = await fetch("registry.json", { cache: "no-store" });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const data = await response.json();
+        state.addons = Array.isArray(data) ? data : [];
+
+        renderCategories();
+        renderGrid();
+      } catch (error) {
+        console.error("Failed to load registry.json", error);
+        errorState();
+      }
+    }
+
+    searchInput.addEventListener("input", (event) => {
+      state.search = event.target.value;
+      renderGrid();
+    });
+
+    loadRegistry();
+  </script>
+</body>
+</html>

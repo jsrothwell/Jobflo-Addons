@@ -2,10 +2,13 @@
 
 A curated, community-maintained registry of addons for [Jobflo](https://github.com/jsrothwell) — local-first job data ingestion and parsing. Each addon plugs into Jobflo through the `@jobflo/addon-sdk` contract to ingest, parse, and normalize job data from a specific source.
 
+Browse the registry as a web page at the [GitHub Pages showcase](https://jsrothwell.github.io/Jobflo-Addons/).
+
 This repository is an npm workspaces monorepo containing:
 
 - **`packages/sdk`** — [`@jobflo/addon-sdk`](packages/sdk), the TypeScript SDK addons are built against.
 - **`addons/`** — the registry of community addons, including the [`starter-template`](addons/starter-template) reference implementation.
+- **`docs/`** — the GitHub Pages showcase site, generated from each addon's `manifest.json` via `npm run build:registry`.
 
 ## Addon Index
 
@@ -46,8 +49,9 @@ Use [`addons/starter-template`](addons/starter-template) as the base for a new a
 3. **Implement the contract** using `defineAddon()` from `@jobflo/addon-sdk`, providing:
    - An `AddonManifest` (id, name, version, description, author, permissions, targetEvents).
    - A `parse` implementation that turns a `DataIngestPayload` into a `ParserResult`.
-4. **Keep it local-first.** Addons should not require network access to function; declare any required `permissions` explicitly in the manifest.
-5. **Type-check** your addon: `npm run build --workspace=addons/<your-addon-name>`.
+4. **Add a `manifest.json`** at the root of your addon folder (see `addons/starter-template/manifest.json`) — this powers the registry showcase site and needs `id`, `name`, `description`, `author`, `version`, and optional `category`/`tags`.
+5. **Keep it local-first.** Addons should not require network access to function; declare any required `permissions` explicitly in the manifest.
+6. **Type-check** your addon: `npm run build --workspace=addons/<your-addon-name>`.
 
 ## Submitting an Addon (Pull Request Guidelines)
 

@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",
+    "build:registry": "node scripts/build-registry.js",
     "clean": "npm run clean --workspaces --if-present"
   },
   "license": "MIT",

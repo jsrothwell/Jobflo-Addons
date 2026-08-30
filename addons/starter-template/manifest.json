@@ -1,0 +1,9 @@
+{
+  "id": "starter-template",
+  "name": "Starter Template",
+  "description": "Reference implementation demonstrating the defineAddon contract. Parses newline-delimited \"Title @ Company\" lines into jobs.",
+  "author": "jsrothwell",
+  "version": "1.0.0",
+  "category": "example",
+  "tags": ["starter", "reference", "template"]
+}
