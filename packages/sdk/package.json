@@ -1,0 +1,27 @@
+{
+  "name": "@jobflo/addon-sdk",
+  "version": "1.0.0",
+  "description": "SDK for building local-first Jobflo addons: types and helpers for the addon contract.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "jobflo",
+    "addon",
+    "sdk"
+  ],
+  "author": "jsrothwell",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  }
+}
