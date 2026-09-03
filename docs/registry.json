@@ -1,5 +1,19 @@
 [
   {
+    "id": "linkedin-posting-text",
+    "name": "LinkedIn Posting Text",
+    "description": "Parses the plain text of a LinkedIn job posting's detail panel \u2014 select the panel (company through the About the job section) and paste it in. Reads the company/title/location header, the Remote/Hybrid/On-site and Full-time/Part-time badges, relative posted time and applicant count, and the job description, up to LinkedIn's own \"Benefits found in job post\" cutoff.",
+    "author": "jsrothwell",
+    "version": "1.0.0",
+    "category": "parser",
+    "tags": [
+      "linkedin",
+      "clipboard",
+      "text",
+      "single-source"
+    ]
+  },
+  {
     "id": "schema-org-jobposting",
     "name": "schema.org JobPosting",
     "description": "Extracts the schema.org JobPosting JSON-LD block that most ATS platforms (Greenhouse, Lever, Workday, LinkedIn, Indeed, and many company career pages) embed in job page HTML for SEO, and normalizes it into Jobflo jobs. Paste a job page's HTML source and it works across virtually any site that follows the standard, with no per-site scraping logic.",
