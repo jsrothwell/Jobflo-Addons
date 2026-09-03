@@ -14,6 +14,7 @@ This repository is an npm workspaces monorepo containing:
 
 | Addon | Description | Author | Version |
 | ----- | ----------- | ------ | ------- |
+| [`indeed-posting-text`](addons/indeed-posting-text) | Parses the plain text of an Indeed job posting's detail panel (title, company, location, pay, Full job description) into a normalized job | jsrothwell | 1.0.0 |
 | [`linkedin-posting-text`](addons/linkedin-posting-text) | Parses the plain text of a LinkedIn job posting's detail panel (company, title, location, badges, About the job) into a normalized job | jsrothwell | 1.0.0 |
 | [`schema-org-jobposting`](addons/schema-org-jobposting) | Parses schema.org JobPosting JSON-LD out of pasted job page HTML — works across Greenhouse, Lever, Workday, LinkedIn, Indeed, and most ATS platforms | jsrothwell | 1.0.0 |
 | [`starter-template`](addons/starter-template) | Reference implementation demonstrating the `defineAddon` contract | jsrothwell | 1.0.0 |
