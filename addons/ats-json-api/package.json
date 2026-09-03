@@ -1,0 +1,20 @@
+{
+  "name": "@jobflo-addons/ats-json-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Parses the raw JSON response from Greenhouse's or Lever's public job board API into normalized jobs.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist"
+  },
+  "author": "jsrothwell",
+  "license": "MIT",
+  "dependencies": {
+    "@jobflo/addon-sdk": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  }
+}
