@@ -1,0 +1,9 @@
+{
+  "id": "chart-jobs-by-company",
+  "name": "Jobs by Company (Bar Chart)",
+  "description": "Renders a horizontal bar chart of job counts per company from a set of parsed jobs, for the analytics section. Groups by ParsedJob.company, sorts descending, and caps to the top 12 companies (grouping the rest into \"Other\") to keep the chart readable. Computes its own SVG bar geometry with d3-scale — no browser DOM or canvas required.",
+  "author": "jsrothwell",
+  "version": "1.0.0",
+  "category": "chart",
+  "tags": ["chart", "visualization", "analytics", "bar-chart", "d3", "svg"]
+}
