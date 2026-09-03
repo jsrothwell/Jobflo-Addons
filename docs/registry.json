@@ -1,5 +1,20 @@
 [
   {
+    "id": "schema-org-jobposting",
+    "name": "schema.org JobPosting",
+    "description": "Extracts the schema.org JobPosting JSON-LD block that most ATS platforms (Greenhouse, Lever, Workday, LinkedIn, Indeed, and many company career pages) embed in job page HTML for SEO, and normalizes it into Jobflo jobs. Paste a job page's HTML source and it works across virtually any site that follows the standard, with no per-site scraping logic.",
+    "author": "jsrothwell",
+    "version": "1.0.0",
+    "category": "parser",
+    "tags": [
+      "schema.org",
+      "json-ld",
+      "structured-data",
+      "ats",
+      "generic"
+    ]
+  },
+  {
     "id": "starter-template",
     "name": "Starter Template",
     "description": "Reference implementation demonstrating the defineAddon contract. Parses newline-delimited \"Title @ Company\" lines into jobs.",
