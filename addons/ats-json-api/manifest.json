@@ -1,0 +1,9 @@
+{
+  "id": "ats-json-api",
+  "name": "ATS JSON API (Greenhouse & Lever)",
+  "description": "Parses the raw JSON response from Greenhouse's or Lever's public job board API — paste a boards-api.greenhouse.io/v1/boards/<company>/jobs or api.lever.co/v0/postings/<company> response and it detects which one produced it. Reads richer per-posting fields (department, workplace type, employment commitment, the posting's own URL) than the schema.org JobPosting scrape can see, since it works from each ATS's native job data instead of embedded SEO markup. Parses every job in the response at once, skipping (not failing on) individual entries missing a title.",
+  "author": "jsrothwell",
+  "version": "1.0.0",
+  "category": "parser",
+  "tags": ["greenhouse", "lever", "ats", "json", "api", "multi-source", "batch"]
+}
