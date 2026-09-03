@@ -1,0 +1,9 @@
+{
+  "id": "indeed-posting-text",
+  "name": "Indeed Posting Text",
+  "description": "Parses the plain text of an Indeed job posting's detail panel — select the panel (job title through the end of the Full job description section) and paste it in. Reads the title/company/location header, the Pay and Job type fields when Indeed shows them, and the job description, up to Indeed's own \"Report job\" cutoff.",
+  "author": "jsrothwell",
+  "version": "1.0.0",
+  "category": "parser",
+  "tags": ["indeed", "clipboard", "text", "single-source"]
+}
