@@ -1,7 +1,7 @@
 {
   "name": "@jobflo/addon-sdk",
-  "version": "1.0.0",
-  "description": "SDK for building local-first Jobflo addons: types and helpers for the addon contract.",
+  "version": "1.1.0",
+  "description": "SDK for building local-first Jobflo addons: types and helpers for the parser addon contract (defineAddon) and the chart/visualization addon contract (defineChartAddon).",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
