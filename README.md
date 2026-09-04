@@ -16,6 +16,7 @@ This repository is an npm workspaces monorepo containing:
 | ----- | ----------- | ------ | ------- |
 | [`ats-json-api`](addons/ats-json-api) | Parses the raw JSON response from Greenhouse's or Lever's public job board API (format detected automatically) into normalized jobs, all in one pass | jsrothwell | 1.0.0 |
 | [`chart-jobs-by-company`](addons/chart-jobs-by-company) | Chart addon: renders a horizontal bar chart of job counts per company, for the analytics section | jsrothwell | 1.0.0 |
+| [`chart-jobs-by-location`](addons/chart-jobs-by-location) | Chart addon: renders a donut chart of job counts per location, for the analytics section | jsrothwell | 1.0.0 |
 | [`indeed-posting-text`](addons/indeed-posting-text) | Parses the plain text of an Indeed job posting's detail panel (title, company, location, pay, Full job description) into a normalized job | jsrothwell | 1.0.0 |
 | [`linkedin-posting-text`](addons/linkedin-posting-text) | Parses the plain text of a LinkedIn job posting's detail panel (company, title, location, badges, About the job) into a normalized job | jsrothwell | 1.0.0 |
 | [`schema-org-jobposting`](addons/schema-org-jobposting) | Parses schema.org JobPosting JSON-LD out of pasted job page HTML — works across Greenhouse, Lever, Workday, LinkedIn, Indeed, and most ATS platforms | jsrothwell | 1.0.0 |
