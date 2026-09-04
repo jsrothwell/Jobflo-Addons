@@ -33,6 +33,23 @@
     ]
   },
   {
+    "id": "chart-jobs-by-location",
+    "name": "Jobs by Location (Donut Chart)",
+    "description": "Renders a donut chart of job counts per location from a set of parsed jobs, for the analytics section. Groups by ParsedJob.location, sorts descending, and caps to the top 8 locations (grouping the rest into \"Other\") with a legend. Computes its own SVG arc geometry with d3-shape's pie/arc generators — no browser DOM or canvas required.",
+    "author": "jsrothwell",
+    "version": "1.0.0",
+    "category": "chart",
+    "tags": [
+      "chart",
+      "visualization",
+      "analytics",
+      "donut-chart",
+      "pie-chart",
+      "d3",
+      "svg"
+    ]
+  },
+  {
     "id": "indeed-posting-text",
     "name": "Indeed Posting Text",
     "description": "Parses the plain text of an Indeed job posting's detail panel — select the panel (job title through the end of the Full job description section) and paste it in. Reads the title/company/location header, the Pay and Job type fields when Indeed shows them, and the job description, up to Indeed's own \"Report job\" cutoff.",
