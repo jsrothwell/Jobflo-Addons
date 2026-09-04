@@ -1,0 +1,9 @@
+{
+  "id": "chart-jobs-by-location",
+  "name": "Jobs by Location (Donut Chart)",
+  "description": "Renders a donut chart of job counts per location from a set of parsed jobs, for the analytics section. Groups by ParsedJob.location, sorts descending, and caps to the top 8 locations (grouping the rest into \"Other\") with a legend. Computes its own SVG arc geometry with d3-shape's pie/arc generators — no browser DOM or canvas required.",
+  "author": "jsrothwell",
+  "version": "1.0.0",
+  "category": "chart",
+  "tags": ["chart", "visualization", "analytics", "donut-chart", "pie-chart", "d3", "svg"]
+}
