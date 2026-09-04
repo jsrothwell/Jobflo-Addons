@@ -1,0 +1,24 @@
+{
+  "name": "@jobflo-addons/chart-jobs-by-company",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Renders a horizontal bar chart of job counts per company as SVG, for the Jobflo analytics section.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist"
+  },
+  "author": "jsrothwell",
+  "license": "MIT",
+  "dependencies": {
+    "@jobflo/addon-sdk": "*",
+    "d3-array": "^3.2.4",
+    "d3-scale": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/d3-array": "^3.2.1",
+    "@types/d3-scale": "^4.0.9",
+    "typescript": "^5.5.4"
+  }
+}
